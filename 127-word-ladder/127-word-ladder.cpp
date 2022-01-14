@@ -1,48 +1,32 @@
 class Solution {
 public:
     int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
-        unordered_map<string,int> m;
-        
-        for(auto itr:wordList){
-            m[itr]=2;
-        }
-        
-        if(m[endWord]==0){
-            return 0;
-        }
-        
-        queue<string> q;
-        q.push(beginWord);
-        int cnt=1;
-        
-        while(!q.empty()){
-            int sz=q.size();
-            while(sz--){
-                string t=q.front();
-                q.pop();
-                int len=t.length();
-                
-                for(int i=0;i<len;i++){
-                    char ch=t[i];
-                    for(int j=97;j<=122;j++){
-                        t[i]=(char)j;
-                        
-                        if(t==endWord){
-                            cnt++;
-                            return cnt;
+        unordered_set<string> dict(wordList.begin(), wordList.end());
+        queue<string> todo;
+        todo.push(beginWord);
+        int ladder = 1;
+        while (!todo.empty()) {
+            int n = todo.size();
+            for (int i = 0; i < n; i++) {
+                string word = todo.front();
+                todo.pop();
+                if (word == endWord) {
+                    return ladder;
+                }
+                dict.erase(word);
+                for (int j = 0; j < word.size(); j++) {
+                    char c = word[j];
+                    for (int k = 0; k < 26; k++) {
+                        word[j] = 'a' + k;
+                        if (dict.find(word) != dict.end()) {
+                            todo.push(word);
                         }
-                        
-                        if(m[t]==2){
-                            q.push(t);
-                            m[t]=1;
-                        }
-                    }
-                    t[i]=ch;
+                     }
+                    word[j] = c;
                 }
             }
-            cnt++;
+            ladder++;
         }
-        
         return 0;
     }
 };
