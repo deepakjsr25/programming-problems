@@ -11,13 +11,6 @@ public:
             return 0;
         }
         
-        // int n=wordList.size();
-        // int mini=endWord.length()-1;
-        
-        // if(mini+1>n){
-        //     return 0;    
-        // }
-        
         queue<string> q;
         q.push(beginWord);
         int cnt=1;
