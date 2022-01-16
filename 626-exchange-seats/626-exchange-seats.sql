@@ -1,1 +1,7 @@
-select if(s.id%2=0 or s.id<(select count(id) from seat),if(s.id%2=0,s.id-1,s.id+1),s.id) as id,s.student from seat as s order by id;
+SELECT
+    s1.id, COALESCE(s2.student, s1.student) AS student
+FROM
+    seat s1
+        LEFT JOIN
+    seat s2 ON ((s1.id + 1) ^ 1) - 1 = s2.id
+ORDER BY s1.id;
