@@ -10,21 +10,18 @@ public:
         return ans;
     }
     
-    void part(string s,vector<string> v,vector<vector<string>>& ans,int i){//aa,,,0
-        int n=s.length();//2
-        // cout<<i<<" "<<s<<endl;
-        if(i==n){//
-            // v.push_back(s);
+    void part(string s,vector<string> v,vector<vector<string>>& ans,int i){
+        int n=s.length();
+        if(i==n){
             ans.push_back(v);
             return;
         }
                    
-        for(int j=i;j<n;j++){ // 0,2
-            int len=j-i+1;//1-1+1
-            string st=s.substr(i,len);//a
-            // cout<<i<<" "<<st<<endl;
+        for(int j=i;j<n;j++){ 
+            int len=j-i+1;
+            string st=s.substr(i,len);
             int start=0;
-            int end=len-1;//0
+            int end=len-1;
                 
             while(start<=end){
                 if(st[end]==st[start]){
@@ -37,9 +34,8 @@ public:
             }
                                
             if(start>end){
-                // cout<<st<<endl;
                 v.push_back(st);
-                part(s,v,ans,j+1);//1,0,a,ans,1
+                part(s,v,ans,j+1);
                 v.pop_back();
             }
         }
