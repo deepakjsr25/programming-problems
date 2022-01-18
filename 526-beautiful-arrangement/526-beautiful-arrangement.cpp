@@ -15,7 +15,7 @@ public:
        while(i<=n){
            if((i%idx==0 || idx%i==0) && (vis[i]!=1)){
                vis[i]=1;
-               op+=arrange(n,idx+1,vis);//2,2  3,3
+               op+=arrange(n,idx+1,vis);
                vis[i]=0;
            }
            i++;
