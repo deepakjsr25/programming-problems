@@ -4,10 +4,6 @@ public:
         vector<vector<int>> ans;
         vector<int> v;
         map<int,int> m;
-        
-        // for(auto it:nums){
-        //     m[it]++;
-        // }
         sort(nums.begin(),nums.end());
         ans.push_back(v);
         subset(nums,ans,v,0,nums.size());
