@@ -9,8 +9,10 @@ public:
             if (++st.back().second == k)
                 st.pop_back();
         }
-        for (auto &p : st)
-            res += string(p.second, p.first);
+        for (auto &p : st){
+            // cout<<string(p.second, p.first)<<endl; //////// to repeat a character n times
+            res += string(p.second, p.first);    
+        }
         return res;
     }
 };
