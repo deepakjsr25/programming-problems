@@ -5,7 +5,6 @@ public:
         for(auto it:accounts){
             maxi=max(maxi,accumulate(it.begin(), it.end(), 0));
         }
-        
         return maxi;
     }
 };
