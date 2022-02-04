@@ -4,9 +4,6 @@ public:
     int findMaxLength(vector<int> &nums)
     {
         nums.insert(nums.begin(), 0);
-        // for (int i = 1; i < nums.size(); i++)
-        //     if (nums[i] == 0)
-        //         nums[i] = -1;
     
         unordered_map<int, int> mp;
         int length = 0;
