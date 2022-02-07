@@ -5,7 +5,6 @@ public:
         char ans;
         
         for(auto it:s){
-            // cout<<it<<endl;
             m[it]++;
         }
         
