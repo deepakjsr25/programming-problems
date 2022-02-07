@@ -1,7 +1,7 @@
 class Solution {
 public:
     char findTheDifference(string s, string t) {
-        unordered_map<char,int> m;
+        vector<int> m(200,0);
         char ans;
         
         for(auto it:s){
@@ -11,12 +11,11 @@ public:
         
         for(auto it:t){
             if(m[it]==0){
-                ans=it;
+                ans=(char)it;
             }
             else{
                 m[it]--;
             }
-            // m[it]++;
         }
         
         return ans;
