@@ -4,7 +4,7 @@ public:
         vector<string> ans;
         int n = s.length();
         unordered_map<string,int> m;
-        if(n<10){
+        if(n<=10){
             return ans;
         }
         
