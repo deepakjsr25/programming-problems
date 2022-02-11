@@ -2,8 +2,7 @@ class Solution {
 public:
     bool checkInclusion(string s1, string s2)
     {
-        int m = s1.size() , n = s2.size() ;
-        
+        int m = s1.size() , n = s2.size() ;   
         vector<int> mp(26,0) , freq(26,0) ;
         
         for(char c : s1)
@@ -20,7 +19,6 @@ public:
                 return true ;
         }
         
-        return false ;
-        
+        return false ;      
     }
 };
