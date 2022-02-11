@@ -12,7 +12,6 @@ public:
         while(i<n){
             if(m[nums[i]]){
                 if(i+1-m[nums[i]]<=k){
-                    cout<<i;
                     return true;
                 }
             }
