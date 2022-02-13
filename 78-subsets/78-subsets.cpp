@@ -1,22 +1,26 @@
 class Solution {
 public:
     vector<vector<int>> subsets(vector<int>& nums) {
-        vector<vector<int>> ans;
-        vector<int> v;
         int n = nums.size();
-     
-        powerset(ans,0,v,nums); 
-        
+        vector<int> v;
+        vector<vector<int>> ans;
+        ans.push_back(v);
+        subsetfunc(nums,0,ans,v);
         return ans;
     }
-     void powerset(vector<vector<int>>& ans,int i,vector<int>& v,vector<int>& nums)
-    {        
-         ans.push_back(v);
-        for(int k = i;k<nums.size();k++)
-        {
-            v.push_back(nums[k]);
-            powerset(ans,k+1,v,nums);
+    
+    void subsetfunc(vector<int>& nums,int i,vector<vector<int>>& ans,vector<int> v){
+        if(i==nums.size()){
+            return;
+        }
+        
+        for(int j=i;j<nums.size();j++){
+            v.push_back(nums[j]);
+            ans.push_back(v);
+            subsetfunc(nums,j+1,ans,v);
             v.pop_back();
         }
+        
+        return;
     }
 };
