@@ -4,7 +4,7 @@ public:
     
     void addNum(int num) {
         nums.insert(num);
-        is_even = !is_even;
+        is_even = !is_even; //false
         if (it == nums.end() || (is_even && (*it) <= num)) it++;
         if (!is_even && (*it) > num) it--;
     }
