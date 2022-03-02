@@ -1,7 +1,7 @@
 class Solution {
 public:
     bool containsNearbyDuplicate(vector<int>& nums, int k) {
-        if(k==0)
+        if(nums.size()==0 ||nums.size()==1)
             return false;
         
         unordered_map<int, int>mp;
@@ -17,8 +17,8 @@ public:
         }
         
         return false;
+
     }
 };
 
  
-
