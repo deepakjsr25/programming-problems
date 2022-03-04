@@ -12,13 +12,6 @@ public:
                 v[i+1][j+1]+=(v[i][j]-1)/2;
             }
         }
-        
-//         for(int i=0;i<=query_row;i++){
-//             for(int j=0;j<=i;j++){
-//                 cout<<v[i][j]<<" ";
-//             }
-//             cout<<endl;
-//         }
         return min(1.0,v[query_row][query_glass]);
     }
 };
