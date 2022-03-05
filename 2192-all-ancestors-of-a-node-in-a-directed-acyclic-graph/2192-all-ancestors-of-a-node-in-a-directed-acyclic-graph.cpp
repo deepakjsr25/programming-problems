@@ -7,7 +7,6 @@ public:
                 ans[x].push_back(i);
                 dfs(graph,i,x,ans,vis);
             }
-            
         }
     }
     vector<vector<int>> getAncestors(int n, vector<vector<int>>& edges) {
