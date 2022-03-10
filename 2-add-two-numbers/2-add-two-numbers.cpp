@@ -8,28 +8,37 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+
+// [2,4,3]
+// [5,6,4]
+
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        ListNode *head = new ListNode(-1);
-        ListNode *tmp = head;
-        int carry = 0;
+        int carry=0;
+        ListNode* ans;
+        ListNode* ans2;
         while(l1 || l2 || carry){
-            int sum = 0;
-            if(l1!=NULL){
-                sum += l1->val;
-                l1 = l1->next;
+            cout<<carry<<endl;
+            int a=l1?l1->val:0;
+            int b=l2?l2->val:0;
+            int sum=(a+b+carry)%10;
+            carry=(a+b+carry)/10;
+            cout<<sum<<" "<<carry<<endl;
+            ListNode* temp=new ListNode(sum);
+            if(!ans){
+                ans=temp;
+                ans2=ans;
             }
-            if(l2!=NULL){
-                sum += l2->val;
-                l2 = l2->next;
+            else{
+                ans->next=temp;
+                ans=ans->next;
             }
-            sum+=carry;
-            carry = sum/10;
-            ListNode *temp = new ListNode(sum%10);
-            tmp->next = temp;
-            tmp = tmp->next;
+            
+            l1=l1?l1->next:NULL;
+            l2=l2?l2->next:NULL;
         }
-        return head->next;
+        
+        return ans2;
     }
 };
