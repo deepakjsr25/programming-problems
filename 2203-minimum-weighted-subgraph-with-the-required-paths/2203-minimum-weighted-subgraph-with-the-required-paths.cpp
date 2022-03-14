@@ -13,14 +13,12 @@ public:
         dist[src1]=0;
         
         while(!q.empty()){
-            // cout<<"";
             long long from=q.front();
             if(vis[from]){
                q.pop();
                 continue;
             }
             vis[from]=1;
-            // cout<<from<<endl;
             auto it=edge[q.front()];
             q.pop();
             long long len=it.size();
@@ -31,7 +29,6 @@ public:
                 else{
                     dist[it[i].first]=min(dist[it[i].first],dist[from]+it[i].second);
                 }
-                // cout<<it[i].first<<" "<<dist[it[i].first]<<endl;
                 q.push(it[i].first);
             }
         }
@@ -50,19 +47,16 @@ public:
                 continue;
             }
             vis2[from]=1;
-            // cout<<from<<endl;
             auto it=edge[q2.front()];
             q2.pop();
             long long len=it.size();
             for(long long i=0;i<len;i++){
-                // cout<<from<<endl;
                 if(dist2[it[i].first]==-1){
                     dist2[it[i].first]=dist2[from]+it[i].second;
                 }
                 else{
                     dist2[it[i].first]=min(dist2[it[i].first],dist2[from]+it[i].second);
                 }
-                // cout<<it[i].first<<" "<<dist2[it[i].first]<<endl;
                 q2.push(it[i].first);
             }
         }
@@ -86,49 +80,30 @@ public:
                 continue;
             }
             vis3[from]=1;
-            // cout<<from<<endl;
             auto it=edge2[q3.front()];
             q3.pop();
             long long len=it.size();
             for(long long i=0;i<len;i++){
-                // cout<<from<<endl;
                 if(dist3[it[i].first]==-1){
                     dist3[it[i].first]=dist3[from]+it[i].second;
                 }
                 else{
                     dist3[it[i].first]=min(dist3[it[i].first],dist3[from]+it[i].second);
                 }
-                // cout<<it[i].first<<" "<<dist2[it[i].first]<<endl;
                 q3.push(it[i].first);
             }
         }
         
         long long mini=10000000000;
-        // cout<<mini<<endl;
         for(long long i=0;i<n;i++){
             if(dist[i]==-1 || dist2[i]==-1 || dist3[i]==-1){
                 continue;
             }
                 
             long long path_dist=dist[i]+dist2[i]+dist3[i];
-            // cout<<path_dist;
             mini=min(path_dist,mini);
         }
-       
-//         int len=dist.size();
-//         for(int i=0;i<len;i++){
-//             cout<<dist[i]<<endl;
-//         }
-        
-//         for(int i=0;i<len;i++){
-//             cout<<dist2[i]<<endl;
-//         }
-        
-//         for(int i=0;i<len;i++){
-//             cout<<dist3[i]<<endl;
-//         }
-        
-        // cout<<mini<<endl;
+
         if(mini==10000000000){
             return -1;
         }
