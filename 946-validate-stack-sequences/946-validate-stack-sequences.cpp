@@ -12,17 +12,7 @@ public:
             }
             i++;
         }
-        
-        // while(!st.empty()){
-        //     if(st.top()==popped[j]){
-        //         st.pop();
-        //         j++;
-        //     }
-        //     else{
-        //         return false;
-        //     }
-        // }
-        
+                
         return j==n;
     }
 };
