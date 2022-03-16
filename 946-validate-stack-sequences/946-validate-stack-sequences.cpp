@@ -13,16 +13,16 @@ public:
             i++;
         }
         
-        while(!st.empty()){
-            if(st.top()==popped[j]){
-                st.pop();
-                j++;
-            }
-            else{
-                return false;
-            }
-        }
+        // while(!st.empty()){
+        //     if(st.top()==popped[j]){
+        //         st.pop();
+        //         j++;
+        //     }
+        //     else{
+        //         return false;
+        //     }
+        // }
         
-        return true;
+        return j==n;
     }
 };
