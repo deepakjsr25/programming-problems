@@ -1,3 +1,5 @@
+/// bottom - up approach
+
 class Solution {
 public:
     int minCost(int n, vector<int>& A) {
@@ -10,9 +12,9 @@ public:
         for (int i = 0; i + 2 < N; ++i) dp[i][i + 2] = A[i + 2] - A[i];
         for (int i = N - 4; i >= 0; --i) {
             for (int j = i + 3; j < N; ++j) {
-                int val = inf;
-                for (int k = i + 1; k < j; ++k)
-                dp[i][j] = min(dp[i][j], dp[i][k] + dp[k][j] + A[j] - A[i]);
+                for (int k = i + 1; k < j; ++k){
+                    dp[i][j] = min(dp[i][j], dp[i][k] + dp[k][j] + A[j] - A[i]);
+                }
             }
         }
         return dp[0][N - 1];
@@ -20,6 +22,7 @@ public:
 };
 
 
+/// /// diagonal approach
 
 // class Solution
 // {  
