@@ -1,20 +1,21 @@
-
-    class Solution {
+class Solution {
 public:
-    int minCost(int n, vector<int>& A) {
-        A.push_back(0);
-        A.push_back(n);
-        sort(begin(A), end(A));
-        int N = A.size();
-        vector<vector<int>> dp(N, vector<int>(N, INT_MAX));
-        for (int i = 0; i < N - 1; ++i) dp[i][i + 1] = 0;
-        for (int i = 0; i < N - 2; ++i) dp[i][i + 2] = A[i + 2] - A[i];
-        for (int len = 4; len <= N; ++len) {
-            for (int i = 0; i <= N - len; ++i) {
-                int j = i + len - 1;
-                for (int k = i + 1; k < j; ++k) dp[i][j] = min(dp[i][j], dp[i][k] + dp[k][j] + A[j] - A[i]);
+    #define ll long long
+    ll dp[102][102];
+    int minCost(int n, vector<int>& cuts) {
+        sort(cuts.begin(), cuts.end());
+        cuts.insert(cuts.begin(), 0);
+        cuts.push_back(n);
+        for(int i=cuts.size()-1; ~i; --i) {
+            for(int j=i+1; j<cuts.size(); ++j) {
+                if(i+1<j) {
+                    dp[i][j]=LLONG_MAX;
+                    for(int k=i+1; k<j; ++k)
+                        dp[i][j]=min(dp[i][j], dp[i][k]+dp[k][j]);
+                }
+                dp[i][j]+=cuts[j]-cuts[i];
             }
         }
-        return dp[0][N - 1];
+        return dp[0][cuts.size()-1]-n;
     }
 };
