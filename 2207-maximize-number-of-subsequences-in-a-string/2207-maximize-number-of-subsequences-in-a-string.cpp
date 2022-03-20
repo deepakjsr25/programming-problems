@@ -26,19 +26,16 @@ public:
                 else{
                     dp[i][j]=dp[i][j-1];
                 }
-                // cout<<i<<" "<<j<<endl;
             }
         }
         
         long long maxi=0;
-        // cout<<ct1<<" "<<ct2<<endl;
         if(pattern[0]!=pattern[1]){
             maxi=max(ct2,ct1);
         }
         else{
             maxi=max(maxi,ct1);
         }
-        // cout<<dp[2][n];
         
         maxi+=dp[2][n];
         return maxi;
