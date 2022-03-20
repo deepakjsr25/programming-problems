@@ -36,8 +36,7 @@ public:
             maxi=max(ct2,ct1);
         }
         else{
-            long long zer0=0;
-            maxi=max(zer0,ct1);
+            maxi=max(maxi,ct1);
         }
         // cout<<dp[2][n];
         
