@@ -12,15 +12,9 @@ public:
                 continue;
             }
             
-            // if(people[i]>limit){
-            //     people[i]=-1;
-            //     break;
-            // } 
-            
             if((people[i]+people[j])<=limit){
                 people[i]=-1;
                 people[j]=-1;
-                // cout<<j<<" "<<endl;
                 cnt++;
                 i++;
             }
@@ -30,7 +24,6 @@ public:
         
         i=0;
         while(i<n){
-            // cout<<i<<" "<<people[i]<<endl;
             if(people[i]!=-1){
                 cnt++;
             }
