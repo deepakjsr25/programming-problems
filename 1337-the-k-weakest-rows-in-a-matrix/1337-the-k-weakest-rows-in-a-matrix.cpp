@@ -1,36 +1,54 @@
+struct CompareHeapElements {
+    bool operator()(pair<int,int> const& p1, pair<int,int> const& p2)
+    {
+        if(p1.first<p2.first){
+            return true;
+        }
+        else if(p1.first==p2.first && p1.second<p2.second){
+            return true;
+        }
+        return false;
+    }
+};
+
 class Solution {
+    // calculate the soldier count using binary search
+    int calculateSoldierCount(vector<int>& v) {
+        int l=0; int h=v.size()-1;
+        while(l<=h) {
+            int mid=l+(h-l)/2;
+            if(v[mid]==0) {
+                h=mid-1;
+            } else {
+                l=mid+1;
+            }
+        }
+        return l;
+    }
+    
 public:
     vector<int> kWeakestRows(vector<vector<int>>& mat, int k) {
-        vector<int> ans;
-        int m=mat.size();
-        int n=mat[0].size();
-        vector<int> nums;
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                if(mat[j][i]==0){
-                    nums.push_back(j);
-                }
-            }
-        }
-    
-        vector<int> ct(m,-1);    
-        for(int i=0;i<nums.size() && k;i++){
-            if(ct[nums[i]]==-1){
-                ct[nums[i]]=1;
-                k--;
-                ans.push_back(nums[i]);
+        
+        // We will use max_heap of pairs because we need the top k minimum strength row index(s)
+        // each element of max_heap will contain {each row soldier count, that row index}.
+        priority_queue<pair<int,int>, vector<pair<int,int>>,CompareHeapElements> max_heap;
+        
+        // Iterating the matrix and find the total number of soldiers in each row,
+        // then push {soldier_count,row_index} to the min_heap
+        for(int i=0;i<mat.size();++i){
+            max_heap.push({calculateSoldierCount(mat[i]),i});
+            if(max_heap.size()>k){
+                max_heap.pop();
             }
         }
         
-        int i=0;
-        while(k && i<m){
-            if(ct[i]!=1){
-                ans.push_back(i);
-                k--;
-            }
-            i++;
+        vector<int>ans;
+        while(max_heap.size()){ // pushing the top k smallest elements of min_heap to "ans"
+            ans.push_back(max_heap.top().second);
+            max_heap.pop();
         }
-        
+		
+        reverse(ans.begin(), ans.end());
         return ans;
     }
 };
