@@ -4,28 +4,17 @@ public:
         int rows=matrix.size();//1
         int cols=matrix[0].size();//1
         
-        for(int r=0;r<rows;r++){
-            if(binarysearch(matrix[r],target,cols)){
-                return 1;
-            }
-        }
-        
-        return 0;
-        
-    }
-    
-    bool binarysearch(vector<int> nums, int target,int n){
         int start=0;
-        int end=n-1;
+        int end=rows*cols-1;
         int mid;
-
         
         while(start<=end){
             mid=(start+end)/2;
-            if(nums[mid]>target){
+            int ele=matrix[mid/cols][mid%cols];
+            if(ele>target){
                 end=mid-1;
             }
-            else if(nums[mid]<target){
+            else if(ele<target){
                 start=mid+1;
             }
             else{
