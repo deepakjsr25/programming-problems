@@ -2,35 +2,41 @@ class Solution {
 public:
     int splitArray(vector<int>& nums, int m) {
         int n=nums.size();
-        vector<vector<int>> dp(n+1,vector<int> (m,-1));
-        return func(nums,  0, 0, m, n, dp);
-    }
-    
-    int func(vector<int>& nums, int i, int curr, int m, int n, vector<vector<int>> &dp){
-        if(curr==m && i==n){
-            return 0;
+        int min_sum=0,max_sum=0;
+        for(int i=0;i<n;i++){
+            max_sum+=nums[i];
+            if(min_sum<nums[i]){
+                min_sum=nums[i];
+            }
         }
         
-        if(i==n){
-            return 100000000;
+        // cout<<min_sum<<" "<<max_sum<<endl;
+        int mid_sum,ans=INT_MAX;
+        while(min_sum<=max_sum){//10  32
+            mid_sum=(min_sum+max_sum)/2; //21
+            int cnt=1,sum=0,curr_max_sum=0;
+            for(int i=0;i<n;i++){
+                sum+=nums[i];
+                // cout<<sum<<" "<<mid_sum<<endl;
+                if(sum>mid_sum){
+                    cnt++;
+                    sum-=nums[i];
+                    curr_max_sum=max(curr_max_sum,sum);
+                    sum=nums[i];
+                }
+            }
+            
+            curr_max_sum=max(curr_max_sum,sum);
+            // cout<<curr_max_sum<<endl;
+            if(cnt<=m){
+                ans=min(ans,curr_max_sum);
+                max_sum=mid_sum-1; 
+            } 
+            else{
+                min_sum=mid_sum+1;
+            }
         }
         
-        if(curr>=m){
-            return 100000000;
-        }
-        
-        if(dp[i][curr]!=-1){
-            return dp[i][curr];
-        }
-        
-        int ans=max(nums[i],func(nums, i+1, curr+1, m, n, dp));
-        int sum=nums[i];
-        
-        for(int j=i+1;j<n;j++){
-            sum+=nums[j];
-            ans=min(ans,max(sum,func(nums, j+1, curr+1, m, n, dp)));
-        }
-        
-        return dp[i][curr]=ans;
+        return ans;
     }
 };
