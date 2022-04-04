@@ -10,31 +10,21 @@
  */
 class Solution {
 public:
-    ListNode* swap=NULL;
     ListNode* swapNodes(ListNode* head, int k) {
-        swapfunc(head,k,0);
+        ListNode *kth=NULL,*temp=head,*temp2=head;
+        
+        while(--k){
+            temp2=temp2->next;
+        }
+        
+        kth=temp2;
+        temp2=temp2->next;
+        while(temp2){
+            temp2=temp2->next;
+            temp=temp->next;
+        }
+        
+        swap(kth->val,temp->val);
         return head;
-    }
-    
-    int swapfunc(ListNode* head,int k,int st){
-        if(head==NULL){
-            return 0;
-        }
-        
-        st++;
-        if(st==k){ //1
-            swap=head;
-        }
-        
-        int op=1+swapfunc(head->next,k,st);
-        
-        if(op==k){
-            // cout<<swap->val<<" "<<op<<endl;
-            int temp=swap->val;
-            swap->val=head->val;
-            head->val=temp;
-        }
-        
-        return op;
     }
 };
