@@ -1,23 +1,12 @@
 class Solution {
 public:
-    int lastStoneWeight(vector<int>& v) {
-        sort(v.begin(),v.end());
-        cout<<v.back();
-        while(v.size()>=2){
-            int a=v.back();
-            v.pop_back();
-            int b=v.back();
-            v.pop_back();
-            if(a!=b){
-                v.push_back(abs(a-b));
-                sort(v.begin(),v.end());
-            }
-        }
-        
-        if(v.empty()){
-            return 0;
-        }
-        
-        return v.back();
-    }
+    int lastStoneWeight(vector<int>& st) {
+  priority_queue<int> q(begin(st), end(st));
+  while (q.size() > 1) {
+    auto w1 = q.top(); q.pop();
+    auto w2 = q.top(); q.pop();
+    if (w1 - w2 > 0) q.push(w1 - w2);
+  }
+  return q.empty() ? 0 : q.top();
+}
 };
