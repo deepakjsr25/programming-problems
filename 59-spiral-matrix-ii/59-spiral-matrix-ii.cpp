@@ -12,7 +12,6 @@ public:
                 ans[curr_i][curr_j]=k;
                 k++;
                 curr_j++;
-                // cout<<"a"<<endl;
             }
             
             curr_j--;
@@ -21,7 +20,6 @@ public:
                 ans[curr_i][curr_j]=k;
                 k++;
                 curr_i++;
-                // cout<<"b"<<endl;
             }
             
             curr_i--;
@@ -30,7 +28,6 @@ public:
                 ans[curr_i][curr_j]=k;
                 k++;
                 curr_j--;
-                // cout<<"c"<<endl;
             }
                   
             curr_i--;      
@@ -39,12 +36,10 @@ public:
                 ans[curr_i][curr_j]=k;
                 k++;
                 curr_i--;
-                // cout<<"d"<<endl;
             }
                   
             curr_i++; 
             curr_j++;
-            // cout<<"a"<<endl;
             rows--,cols--;      
         }
                   
