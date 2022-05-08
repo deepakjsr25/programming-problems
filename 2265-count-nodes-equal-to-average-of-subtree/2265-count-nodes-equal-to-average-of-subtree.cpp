@@ -13,7 +13,6 @@ class Solution {
 public:
     int averageOfSubtree(TreeNode* root) {
         unordered_map<TreeNode*,pair<int,int>> m;
-        m[NULL]=make_pair(0,0);
         return average(m,root);       
     }
     
@@ -27,7 +26,6 @@ public:
         m[root].first=root->val+m[root->left].first+m[root->right].first;
         m[root].second=1+m[root->left].second+m[root->right].second;
         
-        // cout<<m[root].first<<" "<<m[root].second<<" "<<root->val<<endl;
         int q=m[root].first/m[root].second;
         
         if(q==root->val){
