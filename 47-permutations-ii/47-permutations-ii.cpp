@@ -13,19 +13,18 @@ vector<vector<int> > permuteUnique(vector<int> &num) {
     return v;
 }
 
-void permuteUnique(vector<vector<int>> &v, vector<int> &r, map<int, int> &map, int n)
-{
-    if (n <= 0)
-    {
+void permuteUnique(vector<vector<int>> &v, vector<int> &r, map<int, int> &map,int n){
+    if(r.size()==n){
         v.push_back(r);
         return;
     }
+
     for (auto &p : map)
     {
         if (p.second <= 0) continue;
         p.second--;
         r.push_back(p.first);
-        permuteUnique(v, r, map, n - 1);
+        permuteUnique(v, r, map, n);
         r.pop_back();
         p.second++;
     }
