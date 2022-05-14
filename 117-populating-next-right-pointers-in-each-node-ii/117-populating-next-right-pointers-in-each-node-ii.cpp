@@ -18,32 +18,54 @@ public:
 
 class Solution {
 public:
+    unordered_map<Node*,Node*> m;
     Node* connect(Node* root) {
-        // support variables
-        Node *currParent = root, *baseChild, *currChild, *nextChild;
-        while (currParent) {
-            // skipping childless parents - get a family - up to the last node
-            while (currParent->next && !currParent->left && !currParent->right) currParent = currParent->next;
-            // setting the new basechild, provided we have one at all
-            currChild = baseChild = currParent->left ? currParent->left : currParent->right;
-            while (currChild) {
-                // getting nextChild - either the right sibling of currChild or...
-                if (currParent->right && currChild != currParent->right) nextChild = currParent->right;
-                // the child of a following parent
-                else {
-                    // moving to the nextParent, if any
-                    currParent = currParent->next;
-                    // moving parents, if we have too
-                    while (currParent && !currParent->left && !currParent->right) currParent = currParent->next;
-                    // setting nextChild to be the next left/right child, if any; NULL otherwise
-                    nextChild = currParent ? currParent->left ? currParent->left : currParent->right : currParent;
-                }
-                currChild->next = nextChild;
-                currChild = nextChild;
-            }
-            // preparing for the next loop
-            currParent = baseChild;
+        if(root==NULL){
+            return root;
         }
+        
+//         Node* temp=new Node();
+//         temp=root->left;
+//         Node* temp2=new Node();
+//         temp2=root->right;
+        
+//         if(temp){
+//             temp->next=temp2;            
+//             m[root]=temp;
+//             return root;
+//         }
+        
+//         m[root]=temp2;
+//         return root;
+        
+        queue<Node*> q;
+        q.push(root);
+        while(!q.empty()){
+            int l=q.size();//1
+            Node* prev=new Node();//null
+            while(l--){
+                Node* temp=new Node();
+                temp=q.front();
+                q.pop();
+                
+                if(prev==NULL){
+                    prev=temp;
+                }
+                else{
+                    prev->next=temp;
+                    prev=prev->next;
+                }
+                
+                if(temp->left){
+                    q.push(temp->left);
+                }
+                
+                if(temp->right){
+                    q.push(temp->right);
+                }
+            }
+        }
+        
         return root;
     }
 };
