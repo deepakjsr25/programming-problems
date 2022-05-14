@@ -19,7 +19,6 @@ public:
         
         while(!q.empty()){
             int t=q.front();
-            // cout<<t<<endl;
             q.pop();
             for(auto it:adj[t]){
                  parent[it.first]=t;
