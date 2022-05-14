@@ -24,20 +24,6 @@ public:
             return root;
         }
         
-//         Node* temp=new Node();
-//         temp=root->left;
-//         Node* temp2=new Node();
-//         temp2=root->right;
-        
-//         if(temp){
-//             temp->next=temp2;            
-//             m[root]=temp;
-//             return root;
-//         }
-        
-//         m[root]=temp2;
-//         return root;
-        
         queue<Node*> q;
         q.push(root);
         while(!q.empty()){
