@@ -16,33 +16,33 @@ public:
             return 0;
         }
         
-        queue<TreeNode*> q;
-        q.push(root);
-        vector<int> v;
-        v.push_back(root->val);
+        int ht=maxdepth(root);
+        // cout<<ht<<endl;
+        int sum=0;
+        preorder(root,0,ht,sum);
         
-        while(!q.empty()){
-            int len=q.size();
-            int sum=0;
-            while(len--){
-                TreeNode* t=new TreeNode();
-                t=q.front();
-                q.pop();
-                if(t->left!=NULL){
-                    sum+=t->left->val;
-                    q.push(t->left);
-                }
-                
-                if(t->right!=NULL){
-                    sum+=t->right->val;
-                    q.push(t->right);
-                }
-            }
-            
-            v.push_back(sum);
+        return sum;
+    }
+    
+    void preorder(TreeNode* root,int ht,int max_ht,int &sum){
+        if(root==NULL){
+            return;
         }
         
-        v.pop_back();
-        return v.back();
+        preorder(root->left,ht+1,max_ht,sum);
+        preorder(root->right,ht+1,max_ht,sum);
+        
+        // cout<<ht<<" "<<max_ht<<" "<<root->val<<endl;
+        if(ht+1==max_ht){
+            sum+=root->val;
+        }
+    }
+    
+    int maxdepth(TreeNode* root){
+        if(root==NULL){
+            return 0;
+        }
+        
+        return 1+max(maxdepth(root->left),maxdepth(root->right));
     }
 };
