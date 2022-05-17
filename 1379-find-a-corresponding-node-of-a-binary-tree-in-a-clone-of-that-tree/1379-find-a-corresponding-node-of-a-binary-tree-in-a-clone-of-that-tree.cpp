@@ -9,25 +9,25 @@
  */
 
 class Solution {
+    
+    void dfs(TreeNode* og, TreeNode* copy, TreeNode* target, TreeNode*& ans) {
+        if(!og) return;
+        
+        if(og == target) {
+            ans = copy;
+        }
+        
+        dfs(og->left, copy->left, target, ans);
+        dfs(og->right, copy->right, target, ans);
+        
+        return;
+    }
+    
 public:
     TreeNode* getTargetCopy(TreeNode* original, TreeNode* cloned, TreeNode* target) {
-        if(cloned==NULL){
-            return NULL;
-        }
         
-        if(cloned->val==target->val){
-            return cloned;
-        }
-        
-        TreeNode* temp=new TreeNode();
-        TreeNode* temp2=new TreeNode();
-        
-        temp=getTargetCopy(original, cloned->left, target);
-        if(temp){
-            return temp;
-        }
-        
-        temp2=getTargetCopy(original, cloned->right, target);
-        return temp2;
+        TreeNode* ans = nullptr;
+        dfs(original, cloned, target, ans);
+        return ans;
     }
 };
