@@ -10,7 +10,7 @@ public:
         
         for(int i=0;i<len;i++){
             b=((b<<1)&allones) | (s[i]-'0');
-            cout<<num[b];
+            
             if(i>=k-1 && !num[b]){
                 num[b]=1;
                 req--;
