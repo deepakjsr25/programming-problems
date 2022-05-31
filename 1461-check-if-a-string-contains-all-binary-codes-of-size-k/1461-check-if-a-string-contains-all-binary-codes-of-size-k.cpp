@@ -3,19 +3,23 @@ public:
     bool hasAllCodes(string s, int k) {
         int len=s.length();
         int cnt=0;
-        unordered_map<string,int> m;
-        for(int i=0;i<len-k+1;i++){
-            string st=s.substr(i,k);
-            if(!m[st]){
-                cnt++;
+        int req=1<<k;
+        int allones=req-1;
+        vector<bool> num(req);
+        int b=0;
+        
+        for(int i=0;i<len;i++){
+            b=((b<<1)&allones) | (s[i]-'0');
+            cout<<num[b];
+            if(i>=k-1 && !num[b]){
+                num[b]=1;
+                req--;
+                if(req==0){
+                    return 1;
+                }
             }
-            m[st]=1;
         }
         
-        int req=1<<k;
-        if(cnt==req){
-            return 1;
-        }
         
         return 0;
     }
