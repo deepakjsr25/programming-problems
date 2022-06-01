@@ -8,7 +8,6 @@ public:
         prefix_sum[0]=arr[0];
         for(int i=1;i<n;i++){
             prefix_sum[i]=prefix_sum[i-1]^arr[i];
-            cout<<prefix_sum[i]<<" "<<arr[i]<<endl;
         }
         
         for(auto it: queries){
