@@ -8,7 +8,11 @@ public:
             int mid=(low+high)/2;//5 2  3
             int cnt=0;
             for(int i=0;i<len;i++){
-                cnt+=((nums[i]+mid-1)/mid)-1;
+                if(nums[i]%mid==0){
+                    cnt--;
+                }
+                cnt+=nums[i]/mid;
+                // cnt+=((nums[i]+mid-1)/mid)-1;
             }
             
             if(cnt>maxOperations){
