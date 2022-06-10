@@ -3,7 +3,7 @@ public:
     int lengthOfLongestSubstring(string s) {
         int cnt=0;
         vector<int> v(200,-1);
-        int n=s.length(),maxi=0;// 8,0  //abcabcbb
+        int n=s.length(),maxi=0;
         
         if(n==0 ){
             return 0;
@@ -32,3 +32,6 @@ public:
         return maxi;
     }
 };
+
+// "abba"
+// "tmmzuxt"
