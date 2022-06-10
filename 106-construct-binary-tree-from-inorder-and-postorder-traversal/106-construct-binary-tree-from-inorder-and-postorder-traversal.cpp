@@ -35,9 +35,9 @@ public:
         TreeNode* root=new TreeNode(postorder[indx]);
         indx--;
 
-        if(start==end){
-            return root;
-        }
+        // if(start==end){
+        //     return root;
+        // }
         
         int mid=m[root->val];
         
