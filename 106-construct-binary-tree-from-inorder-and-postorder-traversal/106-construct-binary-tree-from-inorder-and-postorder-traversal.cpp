@@ -1,14 +1,3 @@
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
- * };
- */
 class Solution {
 public:
     int indx;
@@ -40,6 +29,9 @@ public:
         // }
         
         int mid=m[root->val];
+        
+        ///plese look these two lnes carefully left right root
+        ///so root->right->left
         
         root->right=build(inorder,postorder,mid+1,end,m);
         root->left=build(inorder,postorder,start,mid-1,m);
