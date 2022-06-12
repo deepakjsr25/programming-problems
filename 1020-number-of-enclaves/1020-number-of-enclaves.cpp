@@ -16,8 +16,6 @@ public:
         for(int i=0;i<m;i++){
             for(int j=0;j<n;j++){
                 if((i==0 || j==0 || i==m-1 || j==n-1) && grid[i][j]==1){
-                    // cout<<i<<" "<<j<<endl;
-                    // int op=countenclve(grid,i,j,m,n);
                     cnt+=countenclve(grid,i,j,m,n);
                 }
             }
@@ -31,19 +29,14 @@ public:
             return 0;
         }
         
-        
-        // cout<<i<<" "<<j<<endl;
         int dir[4][2]={{-1,0},{0,-1},{0,1},{1,0}};
         int cnt=1;
         grid[i][j]=0;
         
         for(auto it:dir){
-            // cout<<it[0]<<" "<<it[1]<<endl;
-            // int op=countenclve(grid,i+it[0],j+it[1],m,n);
             cnt+=countenclve(grid,i+it[0],j+it[1],m,n);
         }
         
-        // cout<<cnt<<endl;
         return cnt;
     }
 };
