@@ -1,37 +1,27 @@
 class Solution {
 public:
     int longestStrChain(vector<string>& words) {
-        unordered_map<string,int> m;
-        int n=words.size();
-        // vector<string> dp(n,-1);
-        for(auto it:words){
-            m[it]=1;
-        }
         
-        int maxi=1;
-        for(auto it:words){
-             maxi=max(maxi,countmax(it,m));
-        }
+    std::sort(words.begin(), words.end(), [](const std::string& first, const std::string& second)
+	{
+        return first.size() < second.size();
+	});
         
-        return maxi;
-    }
-    
-    int countmax(string word,unordered_map<string,int>& m){
-        if(word=="" || m[word]==0){
-            return 0;
-        }
+        map<string,int> m;
+        int res = 0;
         
-        if(m[word]!=1 && m[word]!=0){
-            return m[word];
+        for(string word:words)
+        {
+            int longest =0;
+            for(int i = 0;i<word.length();i++)
+            {
+                string sub = word.substr(0,i) + word.substr(i+1,word.length()+1);
+                longest = max(longest,m[sub]+1);   
+            }
+            
+            m[word] = longest;
+            res = max(res,longest);
         }
-        
-        int len=word.size(),maxi=1;
-        string s="";
-        for(int i=0;i<len;i++){
-            maxi=max(maxi,1+countmax(s+word.substr(i+1,len),m));
-            s+=word[i];
-        }
-        
-        return m[word]=maxi;
+        return res;
     }
 };
