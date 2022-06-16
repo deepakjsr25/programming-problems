@@ -1,18 +1,45 @@
 class Solution {
 public:
-    string longestPalindrome(string s) {  
-        if (s.empty()) return "";
-    if (s.size() == 1) return s;
-    int min_start = 0, max_len = 1;
-    for (int i = 0; i < s.size();) {
-      if (s.size() - i <= max_len / 2) break;
-      int j = i, k = i;
-      while (k < s.size()-1 && s[k+1] == s[k]) ++k; // Skip duplicate characters.
-      i = k+1;
-      while (k < s.size()-1 && j > 0 && s[k + 1] == s[j - 1]) { ++k; --j; } // Expand.
-      int new_len = k - j + 1;
-      if (new_len > max_len) { min_start = j; max_len = new_len; }
-    }
-    return s.substr(min_start, max_len);
+    string longestPalindrome(string s) {
+        int n=s.length();
+        vector<vector<int>> dp(n,vector<int> (n,0));
+        
+        for(int i=0;i<n;i++){
+            dp[i][i]=1;
+        }
+        
+        string st="";
+        int maxi=0;
+        for(int i=0;i<n-1;i++){
+            // cout<<s[i+1]<<endl;
+            if(s[i]==s[i+1]){
+                // cout<<i<<" "<<endl;
+                dp[i][i+1]=2;
+                st=s.substr(i,2);
+                maxi=2;
+            }
+        }
+        
+        for(int i=n-3;i>=0;i--){
+            for(int j=n-1;j>i+1;j--){
+                // cout<<i<<" "<<endl;
+                if(s[i]==s[j] && dp[i+1][j-1]>0){
+                    dp[i][j]=dp[i+1][j-1]+2;
+                }
+                
+                if(dp[i][j]>maxi){
+                    maxi=dp[i][j];
+                    st=s.substr(i,dp[i][j]);
+                }
+                // cout<<"erroe"<<endl;
+            }
+        }
+        
+        if(maxi==0){
+            st=s[0];
+        }
+        
+        // cout<<st<<endl;
+        return st;
     }
 };
