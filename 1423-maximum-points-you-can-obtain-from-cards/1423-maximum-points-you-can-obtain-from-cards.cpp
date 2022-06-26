@@ -7,7 +7,11 @@ public:
             j = N - K;
         auto total = accumulate(A.begin() + j, A.end(), 0),
              best = total;
-        while (K--) best = max(best, total += A[i++] - A[j++]);  // slide window by K \U0001f449
+        while (K--){
+            total-=A[j++];
+            total+=A[i++];
+            best=max(best,total);
+        }  // slide window by K \U0001f449
         return best;
     }
 };
