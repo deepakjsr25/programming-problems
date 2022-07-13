@@ -1,3 +1,4 @@
+# Write your MySQL query statement below
 select DISTINCT num as ConsecutiveNums FROM
 (select num,
 	case 
