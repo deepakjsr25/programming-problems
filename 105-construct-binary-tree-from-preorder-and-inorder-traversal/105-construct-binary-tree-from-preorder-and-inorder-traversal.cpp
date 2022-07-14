@@ -1,7 +1,6 @@
 class Solution {
 public:
     int idx;
-        
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) 
     {
         int n=inorder.size();
