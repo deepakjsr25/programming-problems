@@ -10,8 +10,6 @@ public:
                     v[j]=1;
                     continue;
                 }
-                // cout<<ans[i-1][j];
-                // cout<<ans[i-1][j-1];
                 v[j]=ans[i-1][j]+ans[i-1][j-1];
             }
             ans.push_back(v);
