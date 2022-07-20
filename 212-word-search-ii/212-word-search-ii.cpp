@@ -3,7 +3,7 @@ class Solution {
         char c;
         int ends;
         string word;
-        node *child[26];
+        node *child[26]={NULL};
     };
     struct node *getNode(char c)    //get newnode
     {
@@ -11,8 +11,8 @@ class Solution {
         newnode->c = c;
         newnode->ends = 0;
         newnode->word = "";
-        for(int i=0;i<26;++i)
-            newnode->child[i] = NULL;
+        // for(int i=0;i<26;++i)
+        //     newnode->child[i] = NULL;
         return newnode;
     }
     node *root = getNode('/');  //root
