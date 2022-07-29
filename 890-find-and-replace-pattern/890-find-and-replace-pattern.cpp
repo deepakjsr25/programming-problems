@@ -1,7 +1,6 @@
 class Solution {
 public:
     vector<string> findAndReplacePattern(vector<string>& words, string pattern) {
-        // unordered_map<string,int> mp;
         vector<string> ans;
         int n=words.size();
         int len2=pattern.size();
@@ -19,9 +18,7 @@ public:
             }
         }
         
-        // cout<<pattern;
         
-        // mp[pattern]=1;
         for(int i=0;i<n;i++){
             int len=words[i].size();
             if(len2!=len){
@@ -41,7 +38,6 @@ public:
                     words[i][j]=words[i][v2[words[i][j]-'a']-1];
                 }
             }
-            // cout<<words[i]<<endl;
             if(pattern==words[i]){
                 ans.push_back(temp);
             }
