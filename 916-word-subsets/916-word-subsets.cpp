@@ -1,46 +1,26 @@
 class Solution {
 public:
-    vector<string> wordSubsets(vector<string>& words1, vector<string>& words2) {
-        
+     vector<string> wordSubsets(vector<string>& words1, vector<string>& words2) {
         vector<string> ans;
-        vector<int> universal(26,0);
-        int n2=words2.size(),n=words1.size();
-        for(int i=0;i<n2;i++){
-            vector<int> v(26,0);
-            int len2=words2[i].size();
-            for(int j=0;j<len2;j++){
-                v[words2[i][j]-'a']++;
-            }
-            
-            for(int k=0;k<26;k++){
-                universal[k]=max(universal[k],v[k]);
-            }
+        // ***********Step 1 ***************
+       vector<int> universal(26,0);
+        for(char &ch : words2[0]  ) universal[ch-'a']++;
+        for(int i=1;i<words2.size();++i)
+        {
+            vector<int> temp(26,0);
+            for(char &ch : words2[i])
+                if(universal[ch-'a'] < ++temp[ch-'a']) universal[ch-'a']++;
         }
-        
-        for(int i=0;i<n;i++){
-            vector<int> v(26,0);
-            int len=words1[i].size();
-            for(int j=0;j<len;j++){
-                v[words1[i][j]-'a']++;
-            }
-            
-            bool flag=1;
-            for(int k=0;k<26;k++){
-                if(universal[k]>v[k]){
-                    flag=0;
-                    break;
-                }
-            }
-            
-            // cout<<flag<<endl;
-            
-            if(flag){
-                // cout<<i
-                ans.push_back(words1[i]);
-            }
-            // cout<<"vv"<<endl;
+        // *************Step 2 ************
+        for(string &str  : words1)
+        {
+            vector<int> freq(26,0);
+            for(char &ch : str) freq[ch-'a']++;
+            bool valid = true;
+            for(int i=0;i<26 && valid;i++)
+                if(freq[i]<universal[i]) valid=false;
+            if(valid) ans.emplace_back(str);
         }
-        
         return ans;
     }
 };
