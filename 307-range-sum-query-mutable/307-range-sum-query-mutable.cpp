@@ -5,8 +5,13 @@ public:
     NumArray(vector<int>& a) {
         n=a.size();
         st.resize(4*n+20,0);
-        for(int i=0;i<n;i++)
+        for(int i=0;i<n;i++){
             up(0,0,n-1,i,a[i]);
+            // cout<<st[0]<<" ";
+        }
+        // for(auto it:st){
+        //     cout<<it<<" ";
+        // }
     }
     
     void update(int i, int v) {
@@ -17,6 +22,7 @@ public:
         return query(0,0,n-1,l,r);
     }
     
+    /// contructing segmented tree
     void up(int tind,int tl,int tr,int ind,int v){
         if(tl==tr){
             st[tind]=v;
@@ -28,9 +34,8 @@ public:
         else
             up(l+1,m+1,tr,ind,v);
         st[tind]=st[l]+st[l+1];
+        // cout<<st[0]<<" ";
     }
-    
-    
     
     int query(int tind,int tl,int tr,int ql,int qr){
         if(tl>tr||ql>tr||tl>qr)
@@ -40,7 +45,6 @@ public:
         int m=(tl+tr)/2,l=1+(tind<<1);
         return query(l,tl,m,ql,qr)+query(l+1,m+1,tr,ql,qr);
     }
-    
 };
 
 /**
