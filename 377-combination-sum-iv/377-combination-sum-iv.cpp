@@ -5,7 +5,7 @@ public:
         n=nums.size();
         vector<int> dp(target+1,-1);
         
-        sort(nums.begin(),nums.end());
+        // sort(nums.begin(),nums.end());
         return tt(nums,target,dp);
     }
     
